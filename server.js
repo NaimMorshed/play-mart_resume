@@ -24,9 +24,9 @@ client.connect(err => {
         const pd = req.body;
         collection.insertMany(pd)
             .then(result => { 
-                console.log(result.insertedCount);
-                res.send(result.insertedCount)
+                res.send({result})
             })
+            .catch(err => console.log(err))
     })
 
     // Get Data
@@ -39,10 +39,10 @@ client.connect(err => {
 
     // Delete Data
     app.delete('/delete/:id', (req, res) => {
-        console.log(req.params.id);
+        // console.log(req.params.id);
         collection.deleteOne({_id: ObjectId(req.params.id)})
         .then(res => {
-            console.log(res);
+            // console.log(res);
         })
     })
 
